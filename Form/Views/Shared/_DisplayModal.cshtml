@@ -1,0 +1,105 @@
+﻿<!-- The Modal -->
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="idName">Edit</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="form" id="formEdit">
+                    <label>Name: </label>
+                    <input type="text" class="form-control" name="inputName" placeholder="Enter your full name">
+                    <div class="text-danger ml-2 d-none" name="inputName" id="wName">*Enter your name!</div>
+
+                    <label class="mt-2">Gender: </label><br>
+                    <label class="form-check-label mx-4">
+                        <input type="radio" class="form-check-input" id="radio_male" name="sGender" value="Male">Male
+                    </label>
+                    <label class="form-check-label mx-4">
+                        <input type="radio" class="form-check-input" id="radio_female" name="sGender" value="Female">Female
+                    </label>
+                    <br>
+                    <div class="text-danger ml-2 d-none" name="sGender">*Choose your gender!</div>
+
+                    <label class="mt-2">Phone: </label>
+                    <input type="text" class="form-control" name="inputPhone" placeholder="0123456789">
+                    <div class="text-danger ml-2 d-none" name="inputPhone">*Enter your phone number!</div>
+
+                    <label class="mt-2">Email: </label>
+                    <input type="text" class="form-control" name="inputMail" placeholder="abc@abc.abc">
+                    <div class="text-danger ml-2 d-none" name="inputMail">*Enter your Email address!</div>
+
+                    <label class="mt-2">Address: </label>
+                    <input type="text" class="form-control" name="inputAddress" placeholder="HCM">
+                    <div class="text-danger ml-2 d-none" name="inputAddress">*Enter your address!</div>
+                </form>
+                <div class="d-flex justify-content-center mt-2">
+                    <button type="button" class="btn btn-primary col-sm-3 mr-2" id="sBtnSave">Save</button>
+                    <button type="button" class="btn btn-danger col-sm-3" data-dismiss="modal" id="sBtnClose">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="createModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title text-info">Create new Information</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="createModalBody">
+                <form class="form" id="formCreate">
+                    <label>Name: </label>
+                    <input type="text" class="form-control" name="inputName" placeholder="Enter your full name">
+                    <div class="text-danger ml-2 d-none" name="inputName" id="wName">*Enter your name!</div>
+
+                    <label class="mt-2">Gender: </label><br>
+                    <label class="form-check-label mx-4">
+                        <input type="radio" class="form-check-input" id="radio_male" name="sGender" value="Male">Male
+                    </label>
+                    <label class="form-check-label mx-4">
+                        <input type="radio" class="form-check-input" id="radio_female" name="sGender" value="Female">Female
+                    </label>
+                    <br>
+                    <div class="text-danger ml-2 d-none" name="sGender">*Choose your gender!</div>
+
+                    <label class="mt-2">Phone: </label>
+                    <input type="text" class="form-control" name="inputPhone" placeholder="0123456789">
+                    <div class="text-danger ml-2 d-none" name="inputPhone">*Enter your phone number!</div>
+
+                    <label class="mt-2">Email: </label>
+                    <input type="text" class="form-control" name="inputMail" placeholder="abc@abc.abc">
+                    <div class="text-danger ml-2 d-none" name="inputMail">*Enter your Email address!</div>
+
+                    <label class="mt-2">Address: </label>
+                    <input type="text" class="form-control" name="inputAddress" placeholder="HCM">
+                    <div class="text-danger ml-2 d-none" name="inputAddress">*Enter your address!</div>
+                </form>
+                <div class="d-flex justify-content-center mt-2">
+                    <button type="submit" class="btn btn-primary col-sm-3 mr-2" id="btnConformCreate">Create</button>
+                    <button type="button" class="btn btn-danger col-sm-3" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+            <!-- Modal footer -->
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-primary col-sm-2" id="btnConformCreate">Yes</button>
+                    <button type="button" class="btn btn-danger col-sm-2" data-dismiss="modal">Close</button>
+                </div>*@
+
+        </div>
+    </div>
+</div>
+
+

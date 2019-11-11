@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<h2>Index</h2>
+<div class="d-flex justify-content-center" style="margin-top: 5%">
+    <div class="jumbotron col-md-5">
+        <h2 class="text-center display-4">LOGIN FORM</h2>
+
+        <form action="Verify" method="post">
+            <div class="form-group m-auto">
+                <lable>Account:</lable>
+                <input type="text" class="form-control mb-2" id="usr" placeholder="Enter your account" required>
+                <lable>Password:</lable>
+                <input type="password" class="form-control mb-4" id="pass" placeholder="Enter your password" required>
+                <button type="button" class="btn btn-info d-flex mx-auto" onclick="checkLogin()">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<button id="abc">Click</button>
