@@ -34,6 +34,17 @@ namespace Form
                       "~/Content/bootstrap-table.min.css",
                       "~/Content/site.css",
                       "~/Content/sweetalert2/sweetalert2.min.css"));
+
+            bundles.Add(new ScriptBundle("~/Template/javascript").Include(
+                "~/Content/Template/vendor/jquery/jquery.min.js",
+                "~/Content/Template/vendor/bootstrap/js/bootstrap.bundle.min.js",
+                "~/Content/Template/vendor/jquery-easing/jquery.easing.min.js",
+                 "~/Content/Template/js/sb-admin-2.min.js"));
+
+            bundles.Add(new StyleBundle("~/Template/css").Include(
+                "~/Content/Template/vendor/fontawesome-free/css/all.min.css",
+                "~/Content/Template/css/sb-admin-2.min.css"));
+
         }
     }
 }

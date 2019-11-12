@@ -1,13 +1,4 @@
-﻿$('#abc').on("click", function () {
-    var user = $('#usr').val();
-    var pas = $("#pass").val();
-    checkLogin(user, pas);
-
-    if (checkLogin) {
-        var url = '/Customer/Index';
-        window.location.href = url;
-    }
-})
+﻿
 
 
 function checkLogin() {
