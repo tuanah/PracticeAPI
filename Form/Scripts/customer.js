@@ -1,4 +1,7 @@
-﻿
+﻿$(document).ready(function () {
+    $('#loginName').text(sessionStorage.getItem('name'));
+});
+
 function formatterDel(value) {
     var data = JSON.stringify(value);
     //return '<a href="#myDataTable"><span class="fas fa-edit text-infor mr-2" onclick="clickToEdit(' + data + ')" data-toggle="modal" data-target="#editModal"></span></a><a href="#myDataTable"><span class="fa fa-trash text-danger" onclick="conformDel(' + data +')" data-toggle="modal" data-target="#deleteModal"></span></a>'
@@ -72,7 +75,7 @@ function conformDel(id) {
 function putEditedInfor(infor) {
     $.ajax({
         type: "POST",
-        url: "Customer/PutInfor",
+        url: "/Customer/PutInfor",
         data: infor,
         success: function (res) {
             if (res) {
@@ -141,7 +144,7 @@ function editInformation(id) {
 
 $('#sBtnSave').on("click", function () {
     var infor = new Object();
-    infor.id = $('#idName').text().substr(4, $(this).text().length);
+    infor.CustomerId = $('#idName').text().substr(4, $(this).text().length);
     infor.Name = $('input[name=inputName]').val();
     infor.Gender = $('input[name="sGender"]:checked').val();
     infor.Phone = $('input[name=inputPhone]').val();

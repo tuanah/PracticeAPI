@@ -15,15 +15,33 @@ namespace Form.Controllers
         IEnumerable<CustomerViewModal> informations = null;
         public ActionResult Index()
         {
-            informations = new HttpConnect().GetData(address);
-            if (informations == null)
-            {
-                informations = Enumerable.Empty<CustomerViewModal>();
-                ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help");
-            }
+            //informations = new HttpConnect().GetData(address);
+            //if (informations == null)
+            //{
+            //    informations = Enumerable.Empty<CustomerViewModal>();
+            //    ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help");
+            //}
 
-            return View(informations);
+            //return View(informations);
+            return View();
         }
+
+        public ActionResult Table()
+        {
+            return View("Table");
+        }
+
+        public ActionResult View404()
+        {
+            return View("View404");
+        }
+
+        public ActionResult Blank()
+        {
+            return View("Blank");
+        }
+
+
         [HttpGet]
         public ActionResult GetList()
         {

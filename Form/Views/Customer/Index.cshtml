@@ -1,9 +1,13 @@
 ﻿
 @{
     ViewBag.Title = "Informations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h1 class="h1 mb-4 text-gray-800">Dashboard</h1>
 @Html.Partial("_FormInfor")
+
+<h2 class="h3 ml-4 text-gray-700">Customers</h2>
 @{ 
     Html.RenderPartial("_TableData");
 }

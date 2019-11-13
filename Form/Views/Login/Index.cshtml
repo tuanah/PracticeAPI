@@ -3,81 +3,53 @@
     ViewBag.Title = "Login";
     Layout = null;
 }
-
-
-@*<div class="d-flex justify-content-center" style="margin-top: 5%">
-        <div class="jumbotron col-md-5">
-            <h2 class="text-center display-4">LOGIN FORM</h2>
-
-            <form action="Verify" method="post">
-                <div class="form-group m-auto">
-                    <lable>Account:</lable>
-                    <input type="text" class="form-control mb-2" id="usr" placeholder="Enter your account" required>
-                    <lable>Password:</lable>
-                    <input type="password" class="form-control mb-4" id="pass" placeholder="Enter your password" required>
-                    <button type="button" class="btn btn-info d-flex mx-auto" onclick="checkLogin()">Submit</button>
-                </div>
-            </form>
-        </div>
-</div>*@
-
 <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-<head>
+        <title>Login</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        @Styles.Render("~/Template/css")
+    </head>
+    <body class="bg-gradient-primary">
+        <div class="container">
+            <!-- Outer Row -->
+            <div class="row justify-content-center">
 
-    <title>SB Admin 2 - Login</title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+                <div class="col-xl-10 col-lg-12 col-md-9 my-sm-5">
 
-    @*<!-- Custom fonts for this template-->
-    <link href="~/Content/Template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="~/Content/Template/css/sb-admin-2.min.css" rel="stylesheet">*@
-
-</head>
-
-<body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center my-sm-5">
-
-            <div class="col-xl-10 col-lg-12 col-md-9 my-sm-5">
-
-                <div class="card o-hidden border-0 shadow-lg my-sm-5 my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                    </div>
-                                    <form class="user">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="usr" aria-describedby="emailHelp" placeholder="Enter your Username...">
+                    <div class="card o-hidden border-0 shadow-lg my-sm-5 my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="pass" placeholder="Password">
+                                        <form class="user">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="usr" aria-describedby="emailHelp" placeholder="Enter your Username...">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control form-control-user" id="pass" placeholder="Password">
+                                            </div>
+                                            <button type="button" class="btn btn-primary btn-block btn-user" onclick="checkLogin()">Login</button>
+                                        </form>
+                                        <hr>
+                                        <div class="text-center">
+                                            <a class="small" href="#">Forgot Password?</a>
                                         </div>
-                                        <button type="button" class="btn btn-primary btn-block btn-user" onclick="checkLogin()">Login</button>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="#">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="#">Create an Account!</a>
+                                        <div class="text-center">
+                                            <a class="small" href="#">Create an Account!</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -86,20 +58,9 @@
                 </div>
             </div>
         </div>
+        @*@Scripts.Render("~/Template/javascript")*@
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/Script")
 
-    </div>
-
-    @*<!-- Bootstrap core JavaScript-->
-    <script src="~/Content/Template/vendor/jquery/jquery.min.js"></script>
-    <script src="~/Content/Template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="~/Content/Template/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="~/Content/Template/js/sb-admin-2.min.js"></script>*@
-    @Scripts.Render("~/Template/javascript")
-    @Styles.Render("~/Template/css")
-</body>
-
+    </body>
 </html>

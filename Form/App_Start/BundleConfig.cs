@@ -20,26 +20,35 @@ namespace Form
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
             //            "~/Scripts/modernizr-*"));
 
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js",
-                      "~/Scripts/bootstrap-table.min.js",
-                      "~/Scripts/popper.js",
-                      "~/Scripts/login.js",
-                      "~/Scripts/customer.js",
-                      "~/Content/sweetalert2/sweetalert2.min.js"
-                      ));
+                      "~/Scripts/popper.js"));
+
+            bundles.Add(new ScriptBundle("~/Template/jquery").Include(
+                    "~/Content/Template/vendor/jquery/jquery.min.js",
+                    "~/Content/Template/vendor/jquery-easing/jquery.easing.min.js"));
+
+            bundles.Add(new ScriptBundle("~/Template/Script").Include(
+                    "~/Content/Template/js/sb-admin-2.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Script").Include(
+                    "~/Content/sweetalert2/sweetalert2.min.js",
+                    "~/Scripts/bootstrap-table.min.js",
+                    "~/Scripts/login.js",
+                    "~/Scripts/customer.js"));
+
+
+
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-table.min.css"));
+                      
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
-                      "~/Content/bootstrap-table.min.css",
                       "~/Content/site.css",
                       "~/Content/sweetalert2/sweetalert2.min.css"));
-
-            bundles.Add(new ScriptBundle("~/Template/javascript").Include(
-                "~/Content/Template/vendor/jquery/jquery.min.js",
-                "~/Content/Template/vendor/bootstrap/js/bootstrap.bundle.min.js",
-                "~/Content/Template/vendor/jquery-easing/jquery.easing.min.js",
-                 "~/Content/Template/js/sb-admin-2.min.js"));
 
             bundles.Add(new StyleBundle("~/Template/css").Include(
                 "~/Content/Template/vendor/fontawesome-free/css/all.min.css",
