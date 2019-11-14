@@ -1,5 +1,17 @@
-﻿
+﻿$(document).ready(function () {
+})
 
+$('#usr').keypress((e) => {
+    if (e.keyCode == 13 && $('#usr').val()) {
+        $('#pass').focus();
+    }
+})
+
+$('#pass').keypress((e) => {
+    if (e.keyCode == 13 && $('#pass').val()) {
+        checkLogin();
+    }
+})
 
 function checkLogin() {
     var l = Object.create(null)
@@ -16,7 +28,10 @@ function checkLogin() {
                 window.location.href = url;
             }
             else {
-                swal("Error", "Đăng nhập không thành công").catch(swal.noop);
+                console.log("a");
+                $('#usr').focus();
+                $('#usr').addClass("border-bottom-danger");
+                $('#loginError').removeClass("d-none");
             }
         }
     })

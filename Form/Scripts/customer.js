@@ -1,13 +1,10 @@
 ﻿$(document).ready(function () {
     $('#loginName').text(sessionStorage.getItem('name'));
+
 });
 
-function formatterDel(value) {
-    var data = JSON.stringify(value);
-    //return '<a href="#myDataTable"><span class="fas fa-edit text-infor mr-2" onclick="clickToEdit(' + data + ')" data-toggle="modal" data-target="#editModal"></span></a><a href="#myDataTable"><span class="fa fa-trash text-danger" onclick="conformDel(' + data +')" data-toggle="modal" data-target="#deleteModal"></span></a>'
-    return '<a href="#myDataTable"><span class="fas fa-edit text-infor mr-2" onclick="editInformation(' + data + ') "data-toggle="modal" data-target="#editModal"></span></a><a href="#myDataTable"><span class="fa fa-trash text-danger" onclick="conformDel(' + data + ')"></span></a>'
-}
 
+//Load data to table
 $.ajax({
     url: "/Customer/GetList",
     dataType: "json",
@@ -16,6 +13,14 @@ $.ajax({
     }
 })
 
+// Add Option collumn into Table
+function formatterDel(value) {
+    var data = JSON.stringify(value);
+    return '<a href="#myDataTable"><span class="fas fa-edit text-infor mr-2" onclick="editInformation(' + data + ') "data-toggle="modal" data-target="#editModal"></span></a><a href="#myDataTable"><span class="fa fa-trash text-danger" onclick="conformDel(' + data + ')"></span></a>'
+}
+
+// Check Input form
+// Hide anhd Show tag contain "d-none"
 function checkInput($formId) {
     var check = true;
     $formId.find('input[type=text]').each(
@@ -40,56 +45,7 @@ function checkInput($formId) {
     return check;
 }
 
-
-
-function conformDel(id) {
-    swal({
-        type: 'warning',
-        title: 'Warning',
-        text: 'Do you want to delete this Information via ID = ' + id + '?',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then(function () {
-        $.ajax({
-            type: "POST",
-            url: "/Customer/Delete",
-            data: { id: id },
-            success: function (res) {
-                if (res) {
-                    swal('Successfully delete.').catch(
-                        swal.noop);
-                    $('#myDataTable').bootstrapTable('refresh', {
-                        url: '/Customer/GetList'
-                    });
-                }
-                else {
-                    swal('Error!');
-                }
-            }
-        })
-    }).catch(swal.noop);
-}
-
-function putEditedInfor(infor) {
-    $.ajax({
-        type: "POST",
-        url: "/Customer/PutInfor",
-        data: infor,
-        success: function (res) {
-            if (res) {
-                swal('Successfully edit.').catch(swal.noop);
-                $('#myDataTable').bootstrapTable('refresh', {
-                    url: '/Customer/GetList'
-                })
-            }
-            else swal('error', 'Error');
-        }
-    })
-
-}
-
+//Call Controller in MVC by using ajax
 function addNewInfor(infor) {
     var check = true
     $.ajax({
@@ -118,6 +74,48 @@ function addNewInfor(infor) {
     return check;
 }
 
+//Call Controller in MVC by using ajax
+function putEditedInfor(infor) {
+    $.ajax({
+        type: "POST",
+        url: "/Customer/PutInfor",
+        data: infor,
+        success: function (res) {
+            if (res) {
+                swal('Successfully edit.').catch(swal.noop);
+                $('#myDataTable').bootstrapTable('refresh', {
+                    url: '/Customer/GetList'
+                })
+            }
+            else swal('error', 'Error');
+        }
+    })
+
+}
+
+//Call Controller in MVC by using ajax
+function delInfor(id) {
+    $.ajax({
+        type: "POST",
+        url: "/Customer/Delete",
+        data: { id: id },
+        success: function (res) {
+            if (res) {
+                swal('Successfully delete.').catch(
+                    swal.noop);
+                $('#myDataTable').bootstrapTable('refresh', {
+                    url: '/Customer/GetList'
+                });
+            }
+            else {
+                swal('Error!');
+            }
+        }
+    })
+}
+
+
+// Icon edit (collum Option in Table) click
 function editInformation(id) {
     $('#editModal div[name=inputName]').addClass("d-none");
     $('#editModal div[name=sGender]').addClass("d-none");
@@ -141,23 +139,23 @@ function editInformation(id) {
     $('#editModal input[name=inputAddress]').val(infor.Address);
 }
 
+// Icon Trash (collum Option in Table) click
+function conformDel(id) {
+    swal({
+        type: 'warning',
+        title: 'Warning',
+        text: 'Do you want to delete this Information via ID = ' + id + '?',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then(function () {
+        delInfor(id);
+    }).catch(swal.noop);
+}
 
-$('#sBtnSave').on("click", function () {
-    var infor = new Object();
-    infor.CustomerId = $('#idName').text().substr(4, $(this).text().length);
-    infor.Name = $('input[name=inputName]').val();
-    infor.Gender = $('input[name="sGender"]:checked').val();
-    infor.Phone = $('input[name=inputPhone]').val();
-    infor.Email = $('input[name=inputMail]').val();
-    infor.Address = $('input[name=inputAddress]').val();
 
-    if (checkInput($('#formEdit'))) {
-        putEditedInfor(infor);
-        $('#editModal').modal('hide');
-    }
-
-})
-
+//Button "Add to Table" in _FormInfor.cshtml
 $('#btnAdd').on("click", function () {
     var check = true;
     if (!$('#txtName').val()) {
@@ -208,6 +206,8 @@ $('#btnAdd').on("click", function () {
     }
 })
 
+
+//Button "Find" in _FormInfor.cshtml
 $('#btnFind').on("click", function () {
     var infor = Object.create(null);
     infor.Name = $('#txtName').val();
@@ -228,6 +228,24 @@ $('#btnFind').on("click", function () {
     })
 })
 
+// Button Save in EditModal (_DisplayModal.cshtml)
+$('#sBtnSave').on("click", function () {
+    var infor = new Object();
+    infor.CustomerId = $('#idName').text().substr(4, $(this).text().length);
+    infor.Name = $('input[name=inputName]').val();
+    infor.Gender = $('input[name="sGender"]:checked').val();
+    infor.Phone = $('input[name=inputPhone]').val();
+    infor.Email = $('input[name=inputMail]').val();
+    infor.Address = $('input[name=inputAddress]').val();
+
+    if (checkInput($('#formEdit'))) {
+        putEditedInfor(infor);
+        $('#editModal').modal('hide');
+    }
+
+})
+
+// Button Create in createModal (_DisplayModal.cshtml)
 $('#btnConformCreate').on("click", function () {
     var infor = new Object();
     infor.id = $('#idName').text().substr(4, $(this).text().length);

@@ -15,14 +15,6 @@ namespace Form.Controllers
         IEnumerable<CustomerViewModal> informations = null;
         public ActionResult Index()
         {
-            //informations = new HttpConnect().GetData(address);
-            //if (informations == null)
-            //{
-            //    informations = Enumerable.Empty<CustomerViewModal>();
-            //    ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help");
-            //}
-
-            //return View(informations);
             return View();
         }
 
@@ -45,7 +37,7 @@ namespace Form.Controllers
         [HttpGet]
         public ActionResult GetList()
         {
-            informations = new HttpConnect().GetData(address);
+            informations = new CustomerConnectAPI().GetData(address);
             if (informations == null)
             {
                 informations = Enumerable.Empty<CustomerViewModal>();
@@ -60,7 +52,7 @@ namespace Form.Controllers
         public ActionResult GetFindResult(CustomerViewModal t)
         {
             var json = new JavaScriptSerializer().Serialize(t);
-            informations = new HttpConnect().GetData(address, json);
+            informations = new CustomerConnectAPI().GetData(address, json);
             return Json(informations, JsonRequestBehavior.AllowGet);
 
         }
@@ -68,7 +60,7 @@ namespace Form.Controllers
         [HttpPost]
         public ActionResult PostNewInfo(CustomerViewModal t)
         {
-            CustomerViewModal check = new HttpConnect().PostNewInfor(address, t);
+            CustomerViewModal check = new CustomerConnectAPI().PostNewInfor(address, t);
             if (check == null)
             {
                 return Json(new { status = "error", message = "Error creating new Information" });
@@ -79,15 +71,16 @@ namespace Form.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            bool check = new HttpConnect().DelData(address, id);
+            bool check = new CustomerConnectAPI().DelData(address, id);
             return Json(check);
         }
 
         [HttpPost]
         public ActionResult PutInfor(CustomerViewModal t)
         {
-            bool check = new HttpConnect().EditData(address, t);
+            bool check = new CustomerConnectAPI().EditData(address, t);
             return Json(check);
         }
     }
+
 }

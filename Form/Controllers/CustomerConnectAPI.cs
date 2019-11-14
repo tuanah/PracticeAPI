@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
-using System.Configuration;
 using WebAPI.Models;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace Form.Controllers
 {
-    public class HttpConnect
+    public class CustomerConnectAPI
     {
-        IEnumerable<CustomerViewModal> i = null;
+        IEnumerable<CustomerViewModal> i;
 
-        public HttpConnect() { }
+        public CustomerConnectAPI() {
+            i = null;
+        }
 
         public IEnumerable<CustomerViewModal> GetData(string url)
         {
-            i = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["UriLink"]);
@@ -38,7 +37,6 @@ namespace Form.Controllers
 
         public IEnumerable<CustomerViewModal> GetData(string url, string filter)
         {
-            i = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["UriLink"]);
@@ -98,49 +96,6 @@ namespace Form.Controllers
                 return resTask.Result.IsSuccessStatusCode;
             }
         }
-
-        public IEnumerable<LoginViewModal> GetVerifyLogin(string url, string filter)
-        {
-            IEnumerable<LoginViewModal> l = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["UriLink"]);
-
-                var responseTask = client.GetAsync(url + "?filter=" + filter);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<LoginViewModal[]>();
-                    readTask.Wait();
-                    l = readTask.Result;
-                }
-            }
-            return l;
-        }
-
-
-        public IEnumerable<LoginViewModal> GetAccount(string url)
-        {
-            IEnumerable<LoginViewModal> t = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["UriLink"]);
-                var responseTask = client.GetAsync(url);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<LoginViewModal[]>();
-                    readTask.Wait();
-                    t = readTask.Result;
-                }
-            }
-            return t;
-        }
-
 
     }
 }
