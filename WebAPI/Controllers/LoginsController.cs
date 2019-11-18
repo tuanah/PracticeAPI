@@ -18,6 +18,7 @@ namespace WebAPI.Controllers
         private PracticeEntities db = new PracticeEntities();
 
         // GET: api/Logins
+        [Route("test")]
         public IQueryable<Login> GetLogins()
         {
             return db.Logins;
@@ -83,6 +84,7 @@ namespace WebAPI.Controllers
 
         // POST: api/Logins
         [ResponseType(typeof(Login))]
+        [Route("mainLogin")]
         public IHttpActionResult PostLogin(Login login)
         {
             if (!ModelState.IsValid)
@@ -90,6 +92,7 @@ namespace WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            login.loginID = db.Logins.Count() + 1;
             db.Logins.Add(login);
 
             try
@@ -108,15 +111,15 @@ namespace WebAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = login.loginID }, login);
+            return Ok(login);
+            //return CreatedAtRoute("DefaultApi", new { id = login.loginID }, login);
         }
-
+        [HttpPost]
+        [Route("testLogin")]
         public IHttpActionResult PostVerify(Login login)
         {
-            var result= db.Verify(login.username, login.password);
-            return Ok(result);
+            return null;
         }
-
 
         // DELETE: api/Logins/5
         [ResponseType(typeof(Login))]

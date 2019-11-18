@@ -40,10 +40,11 @@ namespace Form.Controllers
             return Json(informations, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         public ActionResult GetList()
         {
             //var informations = new HttpConnect().GetAccount(address);
-            var logins = new LoginConnectAPI().GetAccount(address);
+            var logins = new LoginConnectAPI().GetAccountTest();
             if (logins == null)
             {
                 logins = Enumerable.Empty<LoginViewModal>();
@@ -51,7 +52,20 @@ namespace Form.Controllers
             }
 
             return Json(logins, JsonRequestBehavior.AllowGet);
-
         }
+
+        [HttpPost]
+        public ActionResult PostNewAccount(LoginViewModal l)
+        {
+            //l.loginID = 4;
+            var logins = new LoginConnectAPI().PostAccount(address, l);
+            if (logins == null)
+            {
+                return Json(new { status = "error", message = "Server error occured.", data = logins });
+            }
+            return Json(new { status = "success", message = "Register successfully.", data = logins });
+            //return GetList();
+        }
+
     }
 }
